@@ -99,6 +99,7 @@ app.post("/getStudentInfo", async function (req, res) {
 });
 
 app.post("/addStudent", async function (req, res) {
+  //jest.setTimeout(60000);
   let reqBody = req.body;
   console.log(
     "Request received to add student. Req body: " + JSON.stringify(reqBody)
@@ -111,7 +112,7 @@ app.post("/addStudent", async function (req, res) {
   );
 
   res.setHeader("Content-Type", "application/json");
-  res.JSON(data);
+  res.end(JSON.stringify(data));
 });
 
 app.post("/deleteStudent", async function (req, res) {
@@ -126,6 +127,7 @@ app.post("/deleteStudent", async function (req, res) {
 });
 
 app.post("/editStudent", async function (req, res) {
+  jest.setTimeout(60000);
   let reqBody = req.body;
   console.log(
     "Request received to update Student. Req body: " + JSON.stringify(reqBody)
