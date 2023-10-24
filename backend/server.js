@@ -99,17 +99,17 @@ app.post("/getStudentInfo", async function (req, res) {
 });
 
 app.post("/addStudent", async function (req, res) {
-  //jest.setTimeout(60000);
   let reqBody = req.body;
   console.log(
     "Request received to add student. Req body: " + JSON.stringify(reqBody)
   );
-  let data = await addStudent(
-    reqBody.id,
-    reqBody.name,
-    reqBody.age,
-    reqBody.hometown
-  );
+
+  const id = reqBody.id;
+  const name = reqBody.name;
+  const age = reqBody.age;
+  const hometown = reqBody.hometown || null;
+
+  let data = await addStudent(id, name, age, hometown);
 
   res.setHeader("Content-Type", "application/json");
   res.end(JSON.stringify(data));
@@ -127,12 +127,16 @@ app.post("/deleteStudent", async function (req, res) {
 });
 
 app.post("/editStudent", async function (req, res) {
-  jest.setTimeout(60000);
   let reqBody = req.body;
   console.log(
     "Request received to update Student. Req body: " + JSON.stringify(reqBody)
   );
-  let data = await updateStudent(reqBody.name, reqBody.age, reqBody.hometown, reqBody.id);
+
+  const name = reqBody.name;
+  const age = reqBody.age;
+  const id = reqBody.id;
+
+  let data = await updateStudent(name, age, id);
 
   res.setHeader("Content-Type", "application/json");
   res.end(JSON.stringify(data));
