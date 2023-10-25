@@ -127,6 +127,7 @@ app.post("/deleteStudent", async function (req, res) {
 });
 
 app.post("/editStudent", async function (req, res) {
+  jest.setTimeout(60000);
   let reqBody = req.body;
   console.log(
     "Request received to update Student. Req body: " + JSON.stringify(reqBody)
