@@ -57,7 +57,7 @@ app.post("/addTeacher", async function (req, res) {
 });
 
 app.post("/editTeacher", async function (req, res) {
-  jest.setTimeout(60000);
+  //jest.setTimeout(60000);
   let reqBody = req.body;
   console.log(
     "Request received to update teacher. Req body: " + JSON.stringify(reqBody)
@@ -127,18 +127,12 @@ app.post("/deleteStudent", async function (req, res) {
 });
 
 app.post("/editStudent", async function (req, res) {
-  jest.setTimeout(60000);
   let reqBody = req.body;
   console.log(
     "Request received to update Student. Req body: " + JSON.stringify(reqBody)
   );
 
-  const name = reqBody.name;
-  const age = reqBody.age;
-  const id = reqBody.id;
-  const hometown = reqBody.hometown;
-
-  let data = await updateStudent(name, age, id, hometown);
+  let data = await updateStudent(reqBody.name, reqBody.hometown, reqBody.age, reqBody.id);
 
   res.setHeader("Content-Type", "application/json");
   res.end(JSON.stringify(data));
