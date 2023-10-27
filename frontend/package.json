@@ -55,5 +55,8 @@
     "tslint": "~6.1.0",
     "typescript": "~3.9.5",
     "testcafe": "1.18.6"
+  },
+  "engines" : { 
+    "node": "16.x"
   }
 }
