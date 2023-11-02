@@ -107,7 +107,7 @@ app.post("/addStudent", async function (req, res) {
   const id = reqBody.id;
   const name = reqBody.name;
   const age = reqBody.age;
-  const hometown = reqBody.hometown || null;
+  const hometown = reqBody.hometown;
 
   let data = await addStudent(id, name, age, hometown);
 
