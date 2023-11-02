@@ -12,7 +12,7 @@ jobs:
   build:
     name: Autograding
     runs-on: ubuntu-latest
-  
+    if: github.actor != 'github-classroom[bot]'
     steps:
       - uses: actions/setup-node@v3
         with:
