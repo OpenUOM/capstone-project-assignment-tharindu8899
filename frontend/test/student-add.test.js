@@ -14,6 +14,7 @@ test('Testing add students', async t => {
     await t.typeText("#student-age", "45");
     await t.typeText("#student-Hometown", "Catholic");
     await t.click("#student-add");
+    await t.wait(1000)
 
     await t.navigateTo("/student");
 
@@ -22,4 +23,6 @@ test('Testing add students', async t => {
 
     let tdText = await table.find('tr').nth(rowCount - 1).innerText;
     await t.expect(tdText).contains("Pasindu Basnayaka");
+
+    await t.click("student-delete-999999");
 });
