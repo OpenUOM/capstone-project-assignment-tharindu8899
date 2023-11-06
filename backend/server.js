@@ -10,8 +10,7 @@ const {
   readStudentInfo,
   readTeacherInfo,
   updateStudent,
-  updateTeacher,
-  dbinitialize
+  updateTeacher
 } = require ("./database.js");
 
 const app = express();
@@ -57,7 +56,6 @@ app.post("/addTeacher", async function (req, res) {
 });
 
 app.post("/editTeacher", async function (req, res) {
-  //jest.setTimeout(60000);
   let reqBody = req.body;
   console.log(
     "Request received to update teacher. Req body: " + JSON.stringify(reqBody)
@@ -104,12 +102,12 @@ app.post("/addStudent", async function (req, res) {
     "Request received to add student. Req body: " + JSON.stringify(reqBody)
   );
 
-  const id = reqBody.id;
-  const name = reqBody.name;
-  const age = reqBody.age;
-  const hometown = reqBody.hometown;
-
-  let data = await addStudent(id, name, age, hometown);
+  let data = await addStudent(
+    reqBody.id,
+    reqBody.name,
+    reqBody.age,
+    reqBody.hometown
+  );
 
   res.setHeader("Content-Type", "application/json");
   res.end(JSON.stringify(data));
@@ -132,7 +130,7 @@ app.post("/editStudent", async function (req, res) {
     "Request received to update Student. Req body: " + JSON.stringify(reqBody)
   );
 
-  let data = await updateStudent(reqBody.name, reqBody.hometown, reqBody.age, reqBody.id);
+  let data = await updateStudent(reqBody.name, reqBody.age, reqBody.hometown, reqBody.id);
 
   res.setHeader("Content-Type", "application/json");
   res.end(JSON.stringify(data));
